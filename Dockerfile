@@ -11,6 +11,7 @@ ENV OCS_BASE_IMAGE armbuild/ocs-fedora:20
 # FIXME
 # yum install -y
 
+
 # Patch rootfs
 # FIXME
 # RUN wget -qO - http://j.mp/ocs-scripts | FLAVORS=docker-based,systemd bash
@@ -20,11 +21,14 @@ RUN printf "DEVICE=eth0\nBOOTPROTO=dhcp\nONBOOT=yes\n" > /etc/sysconfig/network-
 
 
 # Clean rootfs from image-builder
-RUN rpm -qa | grep -i xorg | xargs yum -y remove \
- && yum erase -y yum install kernel kernel-lpae linux-firmware \
-                   mesa-dri-drivers gtk2 gtk3 gnome-icon-theme \
-		   fedora-logos alsa-firmware xkeyboard-config \
- && rpm clean all
+RUN yum erase -y \
+        kernel kernel-lpae linux-firmware \
+        mesa-dri-drivers gtk2 gtk3 gnome-icon-theme \
+        fedora-logos alsa-firmware xkeyboard-config \
+	gsettings-desktop-schemas xorg-x11-xkb-utils \
+	wpa_supplicant gdk-pixbuf2
+RUN package-cleanup --leaves | grep -v '^Unable to connect' | grep -v '^Loaded plugins:' | xargs yum erase -y
+RUN yum clean all
     
 
 
