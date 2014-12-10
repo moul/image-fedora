@@ -17,13 +17,18 @@ RUN wget -qO - http://j.mp/ocs-scripts | bash
 ADD ./patches/etc/ /etc/
 
 
+# Disable unappropriate services
+RUN systemctl disable auditd.service \
+ && systemctl disable var-lib-nfs-rpc_pipefs.mount
+
+
 # Clean rootfs from image-builder
 RUN yum erase -y \
         kernel kernel-lpae linux-firmware \
         mesa-dri-drivers gtk2 gtk3 gnome-icon-theme \
         fedora-logos alsa-firmware xkeyboard-config \
 	gsettings-desktop-schemas xorg-x11-xkb-utils \
-	wpa_supplicant gdk-pixbuf2
+	wpa_supplicant gdk-pixbuf2 nfs-utils libnfsidmap
 RUN package-cleanup --leaves | grep -v '^Unable to connect' | grep -v '^Loaded plugins:' | xargs yum erase -y
 RUN yum clean all
     
