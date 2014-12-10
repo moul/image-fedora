@@ -9,7 +9,7 @@ ENV OCS_BASE_IMAGE armbuild/ocs-fedora:20
 
 # Install packages
 # FIXME
-# yum install -y
+RUN yum install -y tmux mg
 
 
 # Patch rootfs
