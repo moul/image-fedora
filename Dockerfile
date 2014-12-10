@@ -13,8 +13,7 @@ ENV OCS_BASE_IMAGE armbuild/ocs-fedora:20
 
 
 # Patch rootfs
-# FIXME
-# RUN wget -qO - http://j.mp/ocs-scripts | FLAVORS=docker-based,systemd bash
+RUN wget -qO - http://j.mp/ocs-scripts | bash
 # ADD ./patches/etc/ /etc/
 RUN echo /dev/nbd0 / ext4 defaults,noatime 0 0 > /etc/fstab
 RUN printf "DEVICE=eth0\nBOOTPROTO=dhcp\nONBOOT=yes\n" > /etc/sysconfig/network-scripts/ifcfg-eth0
