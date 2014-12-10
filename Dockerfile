@@ -7,14 +7,26 @@ MAINTAINER Online Labs <opensource@ocs.online.net>
 ENV OCS_BASE_IMAGE armbuild/ocs-fedora:20
 
 
+# Remove big packages
+RUN yum erase -y \
+        kernel kernel-lpae linux-firmware \
+        mesa-dri-drivers gtk2 gtk3 gnome-icon-theme \
+        fedora-logos alsa-firmware xkeyboard-config \
+	xorg-x11-xkb-utils gdk-pixbuf2 nfs-utils libnfsidmap \
+	wpa_supplicant
+
+
 # Install packages
 # FIXME
-RUN yum install -y tmux mg
+RUN yum install -y \
+    NetworkManger \
+    mg \
+    tmux
 
 
-# Patch rootfs
-RUN wget -qO - http://j.mp/ocs-scripts | bash
-ADD ./patches/etc/ /etc/
+# Packages cleanup
+RUN package-cleanup --leaves | grep -v '^Unable to connect' | grep -v '^Loaded plugins:' | xargs yum erase -y \
+ && yum clean all
 
 
 # Disable unappropriate services
@@ -22,16 +34,10 @@ RUN systemctl disable auditd.service \
  && systemctl disable var-lib-nfs-rpc_pipefs.mount
 
 
-# Clean rootfs from image-builder
-RUN yum erase -y \
-        kernel kernel-lpae linux-firmware \
-        mesa-dri-drivers gtk2 gtk3 gnome-icon-theme \
-        fedora-logos alsa-firmware xkeyboard-config \
-	gsettings-desktop-schemas xorg-x11-xkb-utils \
-	wpa_supplicant gdk-pixbuf2 nfs-utils libnfsidmap
-RUN package-cleanup --leaves | grep -v '^Unable to connect' | grep -v '^Loaded plugins:' | xargs yum erase -y
-RUN yum clean all
-    
+# Patch rootfs
+RUN wget -qO - http://j.mp/ocs-scripts | bash
+ADD ./patches/etc/ /etc/
+ 
 
 
 # TEMPORARY DEBUG ACCESS
