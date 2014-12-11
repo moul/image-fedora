@@ -1,0 +1,8 @@
+[Unit]
+Description=OCS sample service
+
+[Service]
+ExecStart=/etc/ocs/hello-world
+Type=oneshot
+
+[Install]

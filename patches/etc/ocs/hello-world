@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo 'ocs> hello world' > /dev/kmsg
