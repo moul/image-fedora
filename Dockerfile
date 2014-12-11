@@ -49,7 +49,8 @@ ADD ./patches/etc/ /etc/
 # Enable appropriate services
 RUN chkconfig network on \
  && systemctl enable ocs-sample \
- && systemctl enable ocs-sshkeys
+ && systemctl enable ocs-sshkeys \
+ && systemctl enable ocs-synckernelmodules
 
 
 # TEMPORARY DEBUG ACCESS
