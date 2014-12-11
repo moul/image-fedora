@@ -41,14 +41,14 @@ RUN systemctl disable auditd.service \
  && systemctl disable var-lib-nfs-rpc_pipefs.mount
 
 
-# Enable appropriate services
-RUN chkconfig network on
-
-
 # Patch rootfs
 RUN wget -qO - http://j.mp/ocs-scripts | bash
 ADD ./patches/etc/ /etc/
  
+
+# Enable appropriate services
+RUN chkconfig network on \
+ && systemctl enable ocs-sample
 
 
 # TEMPORARY DEBUG ACCESS
