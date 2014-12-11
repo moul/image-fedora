@@ -8,12 +8,14 @@ ENV OCS_BASE_IMAGE armbuild/ocs-fedora:20
 
 
 # Remove big packages
-RUN yum erase -y \
-        kernel kernel-lpae linux-firmware \
-        mesa-dri-drivers gtk2 gtk3 gnome-icon-theme \
-        fedora-logos alsa-firmware xkeyboard-config \
-	xorg-x11-xkb-utils gdk-pixbuf2 nfs-utils libnfsidmap \
-	wpa_supplicant
+# kernel, drivers, firmwares
+RUN yum erase -y kernel* *-drivers *-firmware
+# graphics
+RUN yum erase -y GConf2 gtk* gnome-* fedora-logos xkeyboard-config xorg-* gdk* qt* libX* *fonts*
+# services
+RUN yum erase -y nfs* libnfsidmap wpa_supplicant ModemManager usbutils samba-* cups* iso-codes poppler* words mozjs17
+# rpmorphan | grep ^lib
+RUN yum erase -y libfontenc libgusb libipa_hbac libmbim libqmi libreport-plugin-bugzilla libreport-plugin-reportuploader libxkbfile libmodman libmng
 
 
 # Install packages
@@ -21,8 +23,11 @@ RUN yum erase -y \
 RUN yum install -y \
     NetworkManger \
     mg \
-    redhat-lsb-core \
     tmux
+
+
+# Removed for now
+# redhat-lsb-core
 
 
 # Packages cleanup
