@@ -32,6 +32,7 @@ RUN yum install -y \
 
 # Packages cleanup
 RUN package-cleanup --leaves | grep -v '^Unable to connect' | grep -v '^Loaded plugins:' | xargs yum erase -y \
+ && yum -y autoremove \
  && yum clean all
 
 
