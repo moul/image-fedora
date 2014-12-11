@@ -1,0 +1,10 @@
+#!/bin/sh
+
+metadata_host_name=$(/usr/local/bin/oc-metadata --cached HOSTNAME)
+if [ "x$metadata_host_name" != "x" ]; then
+  echo $new_host_name > /etc/hostname
+  sed "/^127.0.1.1[ \t].*$/ s/.*$/127.0.1.1\t$new_host_name/" -i /etc/hosts
+  sed "/^127.0.0.1[ \t]localhost/ s/localhost.*$/localhost $new_host_name/" -i /etc/hosts
+  hostname $new_host_name
+  echo dhclient-exit-hooks.d/hostname: Dynamic Hostname = $new_host_name
+fi
