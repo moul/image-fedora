@@ -1,5 +1,5 @@
 DOCKER_NAMESPACE =	armbuild/
-NAME =			ocs-fedora
+NAME =			ocs-distrib-fedora
 VERSION =		20
 VERSION_ALIASES =	heisenbug latest
 TITLE =			Fedora 20
