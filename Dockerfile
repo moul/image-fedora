@@ -21,6 +21,7 @@ RUN yum erase -y \
 RUN yum install -y \
     NetworkManger \
     mg \
+    redhat-lsb-core \
     tmux
 
 
