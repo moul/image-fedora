@@ -23,7 +23,8 @@ RUN yum erase -y libfontenc libgusb libipa_hbac libmbim libqmi libreport-plugin-
 RUN yum install -y \
     NetworkManger \
     mg \
-    tmux
+    tmux \
+    ntpdate
 
 
 # Removed for now
@@ -50,8 +51,8 @@ ADD ./patches/etc/ /etc/
 RUN chkconfig network on \
  && systemctl enable ocs-sample \
  && systemctl enable ocs-sshkeys \
- && systemctl enable ocs-synckernelmodules
-
+ && systemctl enable ocs-synckernelmodules \
+ && systemctl enable ntpdate.service
 
 # TEMPORARY DEBUG ACCESS
 RUN echo root:toor2 | chpasswd
