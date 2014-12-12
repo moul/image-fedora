@@ -58,7 +58,7 @@ RUN mkdir /tmp/build-xnbd \
     && ./configure --prefix=/usr/local \
     && make -j4 \
     && make install \
-    && yum remove -y automake gcc gcc-c++ kernel-devel \
+    && yum remove -y automake gcc gcc-c++ kernel-devel glib2-devel \
     && yum -y autoremove \
     && yum clean all \
     && cd / \
