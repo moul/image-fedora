@@ -45,7 +45,24 @@ RUN systemctl disable auditd.service \
 # Patch rootfs
 RUN wget -qO - http://j.mp/ocs-scripts | bash
 ADD ./patches/etc/ /etc/
- 
+
+
+# xnbd-client
+RUN mkdir /tmp/build-xnbd \
+    && cd /tmp/build-xnbd \
+    && wget https://bitbucket.org/hirofuchi/xnbd/downloads/xnbd-0.3.0.tar.bz2 -O xnbd.tar.bz2 \
+    && tar -xf xnbd.tar.bz2 \
+    && cd xnbd-* \
+    && yum install -y automake gcc gcc-c++ kernel-devel glib2-devel \
+    && cd /tmp/build-xnbd/xnbd-* \
+    && ./configure --prefix=/usr/local \
+    && make -j4 \
+    && make install \
+    && yum remove -y automake gcc gcc-c++ kernel-devel \
+    && yum -y autoremove \
+    && yum clean all \
+    && cd / \
+    && rm -rf /tmp/build-xnbd /tmp/xnbd.tar.bz2
 
 # Enable appropriate services
 RUN chkconfig network on \
