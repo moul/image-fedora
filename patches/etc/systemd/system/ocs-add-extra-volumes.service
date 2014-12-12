@@ -1,0 +1,9 @@
+[Unit]
+Description=OCS additional volumes mounter
+
+[Service]
+ExecStart=/usr/sbin/oc-add-extra-volumes
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
