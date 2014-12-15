@@ -42,11 +42,6 @@ RUN systemctl disable auditd.service \
  && systemctl disable var-lib-nfs-rpc_pipefs.mount
 
 
-# Patch rootfs
-RUN wget -qO - http://j.mp/ocs-scripts | bash
-ADD ./patches/etc/ /etc/
-
-
 # xnbd-client
 RUN mkdir /tmp/build-xnbd \
     && cd /tmp/build-xnbd \
@@ -64,12 +59,18 @@ RUN mkdir /tmp/build-xnbd \
     && cd / \
     && rm -rf /tmp/build-xnbd /tmp/xnbd.tar.bz2
 
+
+# Patch rootfs
+RUN wget -qO - http://j.mp/ocs-scripts | bash
+ADD ./patches/etc/ /etc/
+ADD ./patches/usr/ /usr/
+
+
 # Enable appropriate services
 RUN chkconfig network on \
- && systemctl enable ocs-sample \
- && systemctl enable ocs-sshkeys \
- && systemctl enable ocs-add-extra-volumes \
- && systemctl enable ocs-synckernelmodules \
+ && systemctl enable oc-ssh-keys \
+ && systemctl enable oc-add-extra-volumes \
+ && systemctl enable oc-sync-kernel-modules \
  && systemctl enable ntpdate.service
 
 # TEMPORARY DEBUG ACCESS
