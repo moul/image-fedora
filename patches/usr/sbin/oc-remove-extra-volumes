@@ -32,8 +32,8 @@ swapoff_nbd_devices() {
 disconnect_devices() {
     for device in $(ls /dev/nbd*)
     do
-	test $device -eq $ROOT_DEVICE && continue
-	if xnbd-client -c $device
+        test $device = $ROOT_DEVICE && continue
+        if xnbd-client -c $device 2> /dev/null
 	then
 	    xnbd-client -d $device
 	fi
