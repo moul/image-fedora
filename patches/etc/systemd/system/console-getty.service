@@ -1,0 +1,22 @@
+[Unit]
+Description=Console Getty
+Documentation=man:agetty(8)
+After=systemd-user-sessions.service plymouth-quit-wait.service
+After=rc-local.service
+Before=getty.target
+
+[Service]
+ExecStart=-/sbin/agetty -L ttyS0 9600 vt102
+Type=idle
+Restart=always
+RestartSec=0
+UtmpIdentifier=cons
+TTYPath=/dev/console
+TTYReset=yes
+TTYVHangup=yes
+KillMode=process
+IgnoreSIGPIPE=no
+SendSIGHUP=yes
+
+[Install]
+WantedBy=getty.target
