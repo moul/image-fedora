@@ -68,6 +68,7 @@ RUN mkdir /tmp/build-xnbd \
 RUN chkconfig network on \
  && systemctl enable ocs-sample \
  && systemctl enable ocs-sshkeys \
+ && systemctl enable ocs-add-extra-volumes \
  && systemctl enable ocs-synckernelmodules \
  && systemctl enable ntpdate.service
 
