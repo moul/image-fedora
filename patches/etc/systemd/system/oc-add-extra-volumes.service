@@ -4,7 +4,7 @@ Description=OCS additional volumes mounter
 [Service]
 ExecStart=/usr/sbin/oc-add-extra-volumes
 ExecStop=/usr/sbin/oc-remove-extra-volumes
-Type=oneshot
+Type=forking
 DefaultDependencies=no
 
 [Install]
