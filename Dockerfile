@@ -21,7 +21,7 @@ RUN yum erase -y libfontenc libgusb libipa_hbac libmbim libqmi libreport-plugin-
 # Install packages
 # FIXME
 RUN yum install -y \
-    NetworkManger \
+    NetworkManager \
     mg \
     tmux \
     ntpdate
