@@ -5,7 +5,7 @@ ROOT_DEVICE="/dev/nbd0"
 umount_nbd_devices() {
     for device in $(mount | cut -d " " -f 1 | grep /dev/nbd)
     do
-	test $device -eq $ROOT_DEVICE && continue
+	test $device = $ROOT_DEVICE && continue
 	umount $device 2>/dev/null
 	if [ $? -eq 1 ]
 	then

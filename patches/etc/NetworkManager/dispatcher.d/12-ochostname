@@ -8,7 +8,6 @@ then
     metadata_host_name=$(/usr/local/bin/oc-metadata --cached HOSTNAME)
     if [ "x$metadata_host_name" != "x" ]
     then
-	metadata_host_name="${metadata_host_name}-bite"
 	echo $metadata_host_name > /etc/hostname
 	sed "/^127.0.1.1[ \t].*$/ s/.*$/127.0.1.1\t$metadata_host_name/" -i /etc/hosts
 	sed "/^127.0.0.1[ \t]localhost/ s/localhost.*$/localhost $metadata_host_name/" -i /etc/hosts
