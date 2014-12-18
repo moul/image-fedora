@@ -68,8 +68,7 @@ ADD ./patches/usr/ /usr/
 
 
 # Enable appropriate services
-RUN chkconfig network on \
- && systemctl enable oc-ssh-keys \
+RUN systemctl enable oc-ssh-keys \
  && systemctl enable oc-add-extra-volumes \
  && systemctl enable oc-sync-kernel-modules \
  && systemctl enable ntpdate.service
