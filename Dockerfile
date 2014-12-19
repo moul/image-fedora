@@ -66,13 +66,16 @@ RUN wget -qO - http://j.mp/ocs-scripts | bash
 
 
 # Enable appropriate services
-RUN systemctl enable oc-ssh-keys \
- && systemctl enable oc-add-extra-volumes \
- && systemctl enable oc-sync-kernel-modules \
- && systemctl enable ntpdate.service \
+RUN systemctl enable ntpdate.service \
  && systemctl enable NetworkManager-wait-online.service
 
 
 # Add patches *after* systemd's soup, so we can overwrite
 ADD ./patches/etc/ /etc/
 ADD ./patches/usr/ /usr/
+
+
+# Enable appropriate services
+RUN systemctl enable oc-ssh-keys \
+ && systemctl enable oc-add-extra-volumes \
+ && systemctl enable oc-sync-kernel-modules
