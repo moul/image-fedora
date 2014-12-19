@@ -1,8 +1,6 @@
 Official Fedora image on Online Labs
 ====================================
 
-**Warning: this is image is not yet working**
-
 Scripts to build the official Fedora image on Online Labs
 
 This image is built using [Image Tools](https://github.com/online-labs/image-tools) and depends on the [armbuild/fedora-qcow-minimal](https://registry.hub.docker.com/u/armbuild/fedora-qcow-minimal/) Docker image.
