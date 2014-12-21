@@ -1,6 +1,6 @@
 ## -*- docker-image-name: "armbuild/ocs-distrib-fedora:20" -*-
 FROM armbuild/fedora-qcow-minimal:20
-MAINTAINER Online Labs <opensource@ocs.online.net>
+MAINTAINER Online Labs <opensource@ocs.online.net> (@online_en)
 
 
 # Environment
