@@ -16,7 +16,7 @@ RUN yum erase -y GConf2 gtk* gnome-* fedora-logos xkeyboard-config xorg-* gdk* q
 RUN yum erase -y nfs* libnfsidmap wpa_supplicant ModemManager usbutils samba-* cups* iso-codes poppler* words mozjs17
 # rpmorphan | grep ^lib
 RUN yum erase -y libfontenc libgusb libipa_hbac libmbim libqmi libreport-plugin-bugzilla libreport-plugin-reportuploader libxkbfile libmodman libmng
-
+RUN rm -f /root/anaconda-ks.cfg
 
 # Install packages
 # FIXME
