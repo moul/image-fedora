@@ -40,7 +40,8 @@ RUN package-cleanup --leaves | grep -v '^Unable to connect' | grep -v '^Loaded p
 # Disable unappropriate services
 RUN systemctl disable auditd.service \
  && systemctl disable var-lib-nfs-rpc_pipefs.mount \
- && systemctl disable getty@tty1.service
+ && systemctl disable getty@tty1.service \
+ && systemctl disable firewalld.service
 
 
 # xnbd-client
