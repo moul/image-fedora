@@ -15,19 +15,14 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 ---
 
-Commands
---------
+Install
+-------
 
-    # build the image in a rootfs directory
-    $ make rootfs
+Build and write the image to /dev/nbd1 (see [documentation](https://doc.cloud.online.net/howto/create_image.html))
 
-    # push the image on s3
-    $ make publish_on_s3.tar
+    $ make install
 
-    # write the image to /dev/nbd1
-    $ make install_on_disk
-
-Full list of commands available at: https://github.com/online-labs/image-tools/tree/master#commands
+Full list of commands available at: [online-labs/image-tools](https://github.com/online-labs/image-tools/tree/master#commands)
 
 ---
 
