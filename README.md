@@ -1,4 +1,4 @@
-Official Fedora image on Online Labs
+Official Fedora image on Online Labs [![Build Status](https://travis-ci.org/online-labs/image-fedora.svg?branch=master)](https://travis-ci.org/online-labs/image-fedora)
 ====================================
 
 Scripts to build the official Fedora image on Online Labs
