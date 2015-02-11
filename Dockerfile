@@ -22,9 +22,15 @@ RUN rm -f /root/anaconda-ks.cfg
 # FIXME
 RUN yum install -y \
     NetworkManager \
+    bc \
     mg \
     tmux \
+    shunit2 \
     ntpdate
+
+
+# Link shunit2
+RUN ln -s /usr/share/shunit2/shunit2 /usr/bin/
 
 
 # Removed for now
