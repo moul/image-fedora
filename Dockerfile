@@ -1,10 +1,10 @@
 ## -*- docker-image-name: "armbuild/ocs-distrib-fedora:20" -*-
-FROM armbuild/fedora-qcow-minimal:20
+FROM armbuild/fedora-qcow-minimal:21
 MAINTAINER Online Labs <opensource@ocs.online.net> (@online_en)
 
 
 # Environment
-ENV OCS_BASE_IMAGE armbuild/ocs-fedora:20
+ENV OCS_BASE_IMAGE armbuild/ocs-fedora:21
 
 
 # Remove big packages
@@ -26,7 +26,10 @@ RUN yum install -y \
     mg \
     tmux \
     shunit2 \
-    ntpdate
+    ntpdate \
+    tar \
+    wget \
+    lbzip2
 
 
 # Link shunit2
