@@ -54,21 +54,9 @@ RUN systemctl disable auditd.service \
 
 
 # xnbd-client
-RUN mkdir /tmp/build-xnbd \
-    && cd /tmp/build-xnbd \
-    && wget https://bitbucket.org/hirofuchi/xnbd/downloads/xnbd-0.3.0.tar.bz2 -O xnbd.tar.bz2 \
-    && tar -xf xnbd.tar.bz2 \
-    && cd xnbd-* \
-    && yum install -y automake gcc gcc-c++ kernel-devel glib2-devel \
-    && cd /tmp/build-xnbd/xnbd-* \
-    && ./configure --prefix=/usr/local \
-    && make -j4 \
-    && make install \
-    && yum remove -y automake gcc gcc-c++ kernel-devel glib2-devel \
-    && yum -y autoremove \
-    && yum clean all \
-    && cd / \
-    && rm -rf /tmp/build-xnbd /tmp/xnbd.tar.bz2
+RUN wget https://github.com/online-labs/image-fedora/raw/master/packages/xnbd-client/RPMS/armv7hl/xnbd-client-0.3.0-1.fc20.armv7hl.rpm \
+ && yum install -y ./xnbd-client-0.3.0-1.fc20.armv7hl.rpm \
+ && rm -f xnbd-client-0.3.0-1.fc20.armv7hl.rpm
 
 
 # Patch rootfs
