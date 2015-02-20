@@ -1,7 +1,7 @@
 DOCKER_NAMESPACE =	armbuild/
 NAME =			ocs-distrib-fedora
-VERSION =		21
-VERSION_ALIASES =	twenty-one latest
+VERSION =		latest
+VERSION_ALIASES =	twenty-one latest 21
 TITLE =			Fedora 21
 DESCRIPTION =		Fedora 21
 SOURCE_URL =		https://github.com/online-labs/image-fedora
