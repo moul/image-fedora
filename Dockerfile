@@ -23,7 +23,7 @@ RUN rm -f /root/anaconda-ks.cfg
 RUN yum install -y \
     NetworkManager \
     bc \
-    dbus-glib-devel \
+    dbus-glib \
     mg \
     tmux \
     shunit2 \
