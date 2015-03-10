@@ -5,6 +5,8 @@ Scripts to build the official Fedora image on Online Labs
 
 This image is built using [Image Tools](https://github.com/online-labs/image-tools) and depends on the [armbuild/fedora-qcow-minimal](https://registry.hub.docker.com/u/armbuild/fedora-qcow-minimal/) Docker image.
 
+<img src="http://upload.wikimedia.org/wikipedia/commons/4/44/Logo_Fedora_full.svg" width="400px" />
+
 ---
 
 **This image is meant to be used on a C1 server.**
@@ -38,3 +40,7 @@ Links
 
 - [Fedora project](https://fedoraproject.org)
 - [ARM support on Fedora wiki](https://fedoraproject.org/wiki/Architectures/ARM)
+
+---
+
+A project by [![Online Labs](https://raw.githubusercontent.com/online-labs/doc.cloud.online.net/master/www/documentation/docs_public/contents/images/logo_footer.png)](http://labs.online.net/)
