@@ -7,6 +7,12 @@ MAINTAINER Online Labs <opensource@ocs.online.net> (@online_en)
 ENV OCS_BASE_IMAGE armbuild/ocs-fedora:21
 
 
+# Patch rootfs for docker-based builds
+RUN yum install -y tar curl \
+ && curl -Lq http://j.mp/ocs-scripts | FLAVORS=common,docker-based bash -e \
+ && /usr/local/sbin/builder-enter
+
+
 # Remove big packages
 # kernel, drivers, firmwares
 RUN yum erase -y kernel* *-drivers *-firmware
@@ -72,9 +78,14 @@ RUN systemctl enable ntpdate.service \
 # Add patches *after* systemd's soup, so we can overwrite
 ADD ./patches/etc/ /etc/
 ADD ./patches/usr/ /usr/
+#RUN curl -Lq http://j.mp/ocs-scripts | FLAVORS=systemd bash -e
 
 
 # Enable appropriate services
 RUN systemctl enable oc-ssh-keys \
  && systemctl enable oc-add-extra-volumes \
  && systemctl enable oc-sync-kernel-modules
+
+
+# Clean rootfs from image-builder
+RUN /usr/local/sbin/builder-leave
