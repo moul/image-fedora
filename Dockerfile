@@ -17,12 +17,13 @@ RUN yum install -y tar curl \
 # kernel, drivers, firmwares
 RUN yum erase -y kernel* *-drivers *-firmware
 # graphics
-RUN yum erase -y GConf2 gtk* gnome-* fedora-logos xkeyboard-config xorg-* gdk* qt* libX* *fonts*
+RUN yum erase -y GConf2 gtk* gnome-* fedora-logos xkeyboard-config xorg-* gdk* qt* libX* *fonts* plymouth*
 # services
 RUN yum erase -y nfs* libnfsidmap wpa_supplicant ModemManager usbutils samba-* cups* iso-codes poppler* words mozjs17
 # rpmorphan | grep ^lib
 RUN yum erase -y libfontenc libgusb libipa_hbac libmbim libqmi libreport-plugin-bugzilla libreport-plugin-reportuploader libxkbfile libmodman libmng
 RUN rm -f /root/anaconda-ks.cfg
+
 
 # Install packages
 # FIXME
