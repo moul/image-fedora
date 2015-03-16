@@ -90,7 +90,3 @@ RUN systemctl enable oc-ssh-keys \
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
-
-
-# Relabel the whole filesystem on next boot
-RUN touch /.autorelabel
