@@ -67,10 +67,6 @@ RUN wget https://github.com/online-labs/image-fedora/raw/master/packages/xnbd-cl
  && rm -f xnbd-client-0.3.0-1.fc20.armv7hl.rpm
 
 
-# Patch rootfs
-RUN wget -qO - http://j.mp/ocs-scripts | bash
-
-
 # Enable appropriate services
 RUN systemctl enable ntpdate.service \
  && systemctl enable NetworkManager-wait-online.service
