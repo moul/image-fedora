@@ -1,5 +1,5 @@
 [Unit]
-Description=OCS additional volumes mounter
+Description=SCW additional volumes mounter
 
 [Service]
 ExecStart=/usr/local/sbin/oc-add-extra-volumes

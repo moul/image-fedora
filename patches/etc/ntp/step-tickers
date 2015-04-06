@@ -1,4 +1,4 @@
 # List of NTP servers used by the ntpdate service.
 
-ntp.int.cloud.online.net
+ntp.int.scaleway.com
 0.fedora.pool.ntp.org

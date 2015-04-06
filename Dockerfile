@@ -1,16 +1,17 @@
-## -*- docker-image-name: "armbuild/ocs-distrib-fedora:21" -*-
+## -*- docker-image-name: "armbuild/scw-distrib-fedora:21" -*-
 FROM armbuild/fedora-qcow-minimal:21
-MAINTAINER Online Labs <opensource@ocs.online.net> (@online_en)
+MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 
 # Environment
-ENV OCS_BASE_IMAGE armbuild/ocs-fedora:21
+ENV SCW_BASE_IMAGE armbuild/scw-fedora:21
 
 
 # Patch rootfs for docker-based builds
 RUN yum install -y tar curl \
- && curl -Lq http://j.mp/ocs-scripts | FLAVORS=common,docker-based bash -e \
+ && curl -Lq http://j.mp/scw-skeleton | FLAVORS=common,docker-based bash -e \
  && /usr/local/sbin/builder-enter
+
 
 
 # Remove big packages
@@ -62,7 +63,7 @@ RUN systemctl disable auditd.service \
 
 
 # xnbd-client
-RUN wget https://github.com/online-labs/image-fedora/raw/master/packages/xnbd-client/RPMS/armv7hl/xnbd-client-0.3.0-1.fc20.armv7hl.rpm \
+RUN wget https://github.com/scaleway/image-fedora/raw/master/packages/xnbd-client/RPMS/armv7hl/xnbd-client-0.3.0-1.fc20.armv7hl.rpm \
  && yum install -y ./xnbd-client-0.3.0-1.fc20.armv7hl.rpm \
  && rm -f xnbd-client-0.3.0-1.fc20.armv7hl.rpm
 
@@ -75,7 +76,6 @@ RUN systemctl enable ntpdate.service \
 # Add patches *after* systemd's soup, so we can overwrite
 ADD ./patches/etc/ /etc/
 ADD ./patches/usr/ /usr/
-#RUN curl -Lq http://j.mp/ocs-scripts | FLAVORS=systemd bash -e
 
 
 # Enable appropriate services

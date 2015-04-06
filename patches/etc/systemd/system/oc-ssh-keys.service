@@ -1,5 +1,5 @@
 [Unit]
-Description=OCS fetch ssh keys from metadata
+Description=fetch ssh keys from Scaleway metadata server
 After=NetworkManager-wait-online.service
 
 [Service]

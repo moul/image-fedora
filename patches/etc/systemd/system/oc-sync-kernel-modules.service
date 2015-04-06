@@ -1,5 +1,5 @@
 [Unit]
-Description=OCS fetch kernel modules from OCS mirror
+Description=fetch the current kernel modules from Scaleway mirror
 After=NetworkManager-wait-online.service
 
 [Service]
