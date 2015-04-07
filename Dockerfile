@@ -8,7 +8,7 @@ ENV SCW_BASE_IMAGE armbuild/scw-fedora:21
 
 
 # Patch rootfs for docker-based builds
-RUN yum install -y tar curl \
+RUN yum check-update; yum install -y tar curl \
  && curl -Lq http://j.mp/scw-skeleton | FLAVORS=common,docker-based bash -e \
  && /usr/local/sbin/builder-enter
 
@@ -28,17 +28,18 @@ RUN rm -f /root/anaconda-ks.cfg
 
 # Install packages
 # FIXME
-RUN yum install -y \
-    NetworkManager \
-    bc \
-    dbus-glib \
-    mg \
-    tmux \
-    shunit2 \
-    ntpdate \
-    tar \
-    wget \
-    lbzip2
+RUN yum check-update; \
+    yum install -y \
+      NetworkManager \
+      bc \
+      dbus-glib \
+      lbzip2 \
+      mg \
+      ntpdate \
+      shunit2 \
+      tar \
+      tmux \
+      wget
 
 
 # Link shunit2
