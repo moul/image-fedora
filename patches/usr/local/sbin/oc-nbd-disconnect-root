@@ -5,7 +5,7 @@
 # doesn't terminate.
 # Called by init scripts on reboot.
 
-NBD_CLIENT=/usr/local/sbin/xnbd-client
+NBD_CLIENT=xnbd-client
 
 disconnect() {
     $NBD_CLIENT -d "/dev/nbd0"
