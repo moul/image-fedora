@@ -63,12 +63,6 @@ RUN systemctl disable auditd.service \
  && systemctl disable firewalld.service
 
 
-# xnbd-client
-RUN wget https://github.com/scaleway/image-fedora/raw/master/packages/xnbd-client/RPMS/armv7hl/xnbd-client-0.3.0-1.fc20.armv7hl.rpm \
- && dnf install -y ./xnbd-client-0.3.0-1.fc20.armv7hl.rpm \
- && rm -f xnbd-client-0.3.0-1.fc20.armv7hl.rpm
-
-
 # Enable appropriate services
 RUN systemctl enable ntpdate.service \
  && systemctl enable NetworkManager-wait-online.service
