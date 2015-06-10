@@ -63,8 +63,7 @@ RUN systemctl disable auditd.service \
 
 
 # Enable appropriate services
-RUN systemctl enable ntpdate.service \
- && systemctl enable NetworkManager-wait-online.service
+RUN systemctl enable ntpdate.service
 
 
 # Add patches *after* systemd's soup, so we can overwrite
