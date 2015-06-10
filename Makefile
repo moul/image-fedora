@@ -1,9 +1,9 @@
 DOCKER_NAMESPACE =	armbuild/
 NAME =			scw-distrib-fedora
-VERSION =		21
-VERSION_ALIASES =	twenty-one latest latest
-TITLE =			Fedora 21
-DESCRIPTION =		Fedora 21
+VERSION =		22
+VERSION_ALIASES =	twenty-two latest
+TITLE =			Fedora 22
+DESCRIPTION =		Fedora 22
 SOURCE_URL =		https://github.com/scaleway/image-fedora
 
 
