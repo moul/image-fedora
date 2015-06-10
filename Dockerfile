@@ -30,7 +30,6 @@ RUN rm -f /root/anaconda-ks.cfg
 # FIXME
 RUN dnf check-update; \
     dnf install -y \
-      NetworkManager \
       bc \
       dbus-glib \
       lbzip2 \
