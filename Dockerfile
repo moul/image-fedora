@@ -59,7 +59,8 @@ RUN package-cleanup --leaves | grep -v '^Unable to connect' | grep -v '^Loaded p
 RUN systemctl disable auditd.service \
  && systemctl disable var-lib-nfs-rpc_pipefs.mount \
  && systemctl disable getty@tty1.service \
- && systemctl disable firewalld.service
+ && systemctl disable firewalld.service \
+ && systemctl mask dev-ttyS0.device
 
 
 # Enable appropriate services
