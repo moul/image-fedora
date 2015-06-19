@@ -8,7 +8,8 @@ ENV SCW_BASE_IMAGE armbuild/scw-fedora:22
 
 
 # Patch rootfs for docker-based builds
-RUN dnf check-update; dnf install -y tar curl \
+RUN dnf check-update ; dnf upgrade -y
+RUN dnf install -y tar curl \
  && curl -Lq http://j.mp/scw-skeleton | FLAVORS=common,docker-based,systemd bash -e \
  && /usr/local/sbin/builder-enter
 
@@ -55,6 +56,10 @@ RUN package-cleanup --leaves | grep -v '^Unable to connect' | grep -v '^Loaded p
  && dnf clean all
 
 
+# Default target
+RUN systemctl set-default multi-user
+
+
 # Disable unappropriate services
 RUN systemctl disable auditd.service \
  && systemctl disable var-lib-nfs-rpc_pipefs.mount \
@@ -73,10 +78,11 @@ ADD ./patches/usr/ /usr/
 
 
 # Enable appropriate services
-RUN systemctl enable oc-fetch-ssh-keys \
- && systemctl enable oc-add-extra-volumes \
- && systemctl enable oc-sync-kernel-modules
-
+RUN systemctl enable oc-fetch-ssh-keys.service \
+ && systemctl enable oc-add-extra-volumes.service \
+ && systemctl enable oc-sync-kernel-modules.service \
+ && systemctl enable oc-gen-machine-id.service
+ 
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
